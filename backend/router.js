@@ -1,18 +1,24 @@
-const express = require("express")
+const express = require("express");
 
-const router = express.Router()
+const router = express.Router();
 
 const upload = require("./config/upload");
 
+const { createMemory } = require("./controllers/MemoryController");
 
-const { createMemory } = require("./controllers/MemoryController")
+router.post(
+  "/",
+  upload.single("image"),
+  (req, res, next) => {
+    const image = req.file;
 
-router.post("/", upload.single("image"),(req,res, next) => {
-    const image = req.file
-
-    if(!image){
-        return res.status(400).json({msg: "Por favor, envie um arquivo"})
+    if (!image) {
+      return res.status(400).json({ msg: "Please, send a file!" });
     }
-} , (req, res) => createMemory(req, res))
 
-module.exports = router
+    next();
+  },
+  (req, res) => createMemory(req, res)
+);
+
+module.exports = router;
