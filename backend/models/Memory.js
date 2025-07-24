@@ -14,7 +14,7 @@ const commentSchema = new Schema({
 
 const MemorySchema = new Schema(
   {
-    tittle: {
+    title: {
       type: String,
       required: true,
     },
