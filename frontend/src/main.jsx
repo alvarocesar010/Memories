@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-memory",
-        elemnt: <AddMemory/>
+        element: <AddMemory/>
       }
     ]
   }
